@@ -1,0 +1,26 @@
+schema_version: review_pack/v1
+id: boundary
+kind: boundary
+name: Module Boundary Check
+
+scope_selector:
+  include_paths:
+    - "**/*.py"
+    - "**/*.ts"
+    - "**/*.tsx"
+    - "**/*.java"
+
+policy_text: |
+  Review the code for module boundary violations including:
+  - Importing from internal or private modules (paths with _ prefix or _internal in name)
+  - Circular imports between modules
+  - Importing implementation details instead of public APIs
+  - Cross-module dependencies that bypass the intended interface
+  - Direct access to another module's private state or internals
+  - TypeScript: importing from another module's internal paths instead of its index/public exports
+  - Java: accessing package-private members from outside the package
+
+  A clean boundary means: if module A needs something from module B,
+  it should only use B's public API, not B's internal helpers.
+
+output_schema: finding/v1

@@ -1,0 +1,30 @@
+schema_version: review_pack/v1
+id: security
+kind: security
+name: Security Review
+
+scope_selector:
+  include_paths:
+    - "**/*.py"
+    - "**/*.js"
+    - "**/*.ts"
+    - "**/*.tsx"
+    - "**/*.java"
+
+policy_text: |
+  Review the code for security vulnerabilities including:
+  - Command injection: eval(), exec(), os.system() with user-controlled input
+  - SQL injection: string formatting or concatenation inside queries
+  - XSS: unescaped user input rendered in HTML/templates
+  - Hardcoded secrets, API keys, or passwords in source code
+  - Insecure deserialization: pickle.loads() with untrusted data
+  - Missing authentication or authorization checks on sensitive endpoints
+  - Debug mode enabled in production (DEBUG=True, app.run(debug=True))
+  - Sensitive data written to logs
+  - TypeScript/JS: prototype pollution, dangerous use of innerHTML or dangerouslySetInnerHTML
+  - Java: XXE injection in XML parsers, insecure random (Math.random for security), path traversal
+
+  IMPORTANT: Mark auth logic changes, rate-limiting removal, and payment logic
+  as autofixable: false. These require human review, not automatic fixing.
+
+output_schema: finding/v1

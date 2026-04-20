@@ -1,0 +1,8 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+fake-news-repo/
+agentic-ci-handoff-spec.md
+artifacts/

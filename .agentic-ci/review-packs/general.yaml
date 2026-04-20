@@ -1,0 +1,29 @@
+schema_version: review_pack/v1
+id: general-quality
+kind: general
+name: General Code Quality
+
+scope_selector:
+  include_paths:
+    - "**/*.py"
+    - "**/*.js"
+    - "**/*.ts"
+    - "**/*.tsx"
+    - "**/*.java"
+
+policy_text: |
+  Review the code for general quality issues including:
+  - Unused imports and variables
+  - Dead or unreachable code
+  - Missing error handling (bare except, swallowed exceptions, empty catch blocks)
+  - Debug statements left in production (print, console.log, debug=True, breakpoint())
+  - Overly complex functions that should be split
+  - Repeated logic that should be extracted
+  - Missing docstrings or JSDoc/JavaDoc on public functions and classes
+  - TypeScript: any types used where specific types should be defined
+  - Java: raw types, unchecked casts, or missing null checks
+
+  Focus only on clear problems, not style preferences.
+  For each issue, state the file, the problem, and why it matters.
+
+output_schema: finding/v1

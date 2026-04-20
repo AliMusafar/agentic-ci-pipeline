@@ -1,0 +1,25 @@
+schema_version: repo_profile/v1
+repo_name: default
+base_branch: main
+
+commands:
+  preflight: []
+  deterministic_checks: []
+  final_checks: []
+
+paths:
+  editable:
+    - "**/*.py"
+    - "**/*.ts"
+    - "**/*.tsx"
+    - "**/*.js"
+    - "**/*.java"
+  protected:
+    - ".env"
+    - "*.lock"
+    - "secrets/**"
+
+policies:
+  max_files_per_batch: 10
+  max_net_lines_per_batch: 400
+  allow_external_review: false
